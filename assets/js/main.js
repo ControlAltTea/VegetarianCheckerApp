@@ -2,6 +2,8 @@ console.log("connected to main.js")
 
 function getFetch() {
     let inputVal = document.getElementById('barcode').value;
+
+    
     const url = `https://world.openfoodfacts.org/api/v0/product/${inputVal}.json`;
 
     // Checks that the barcode is a valid length
@@ -19,7 +21,8 @@ function getFetch() {
             if (data.status === 1) {
                 // do this
                 const item = new ProductInfo(data.product);
-                item.testCall()
+                item.testCall();
+                item.showInfo();
             }
             else {
                 // If the barcode is invalid, the user will receive an alert to check it or use a different code
@@ -45,5 +48,10 @@ class ProductInfo {
 
     testCall() {
         console.log(this.ingredients)
+    }
+
+    showInfo() {
+        document.getElementById('product-img').src = this.image;
+        document.getElementById('product-name').innerText = this.name;
     }
 }
