@@ -63,3 +63,12 @@ table, th, td {
     padding: 3px;
 }
 
+.veg-item-no {
+    color: white;
+    background-color: rgb(165, 0, 0);
+}
+
+.veg-item-maybe {
+    color: black;
+    background-color: rgb(240, 232, 0);
+}
