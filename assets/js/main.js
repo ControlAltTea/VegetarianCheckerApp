@@ -82,30 +82,53 @@ class ProductInfo {
             // one cell for the vegetarian category
             // we place it at 1 to make it the second cell in the array of cells
             let newVCell = newRow.insertCell(1);
+            // one cell for the vegan category
+            // we place it at 2 to make it the third cell in the array of cells
+            let newVNCell = newRow.insertCell(2);
+
 
             // passing in text into the ICell
             // the ingredients object has a key called "text", which is why we call for 'text'
             let newIText = document.createTextNode(this.ingredients[key].text);
+
+
+            // *** VEGETARIAN STATUS ***
             // same process, but with the vegetarian property
             // we initialize a vegStatus in case the vegetarian property is "undefined"
             // later, there will be a conditional to check for this
             // We use a ternerary operator to check if the vegetarian status is undefined or null, and if it is, we instead return 'unknown', else we'll continue with the pre-determined response from the object's vegetarian property 
-            let vegStatus = this.ingredients[key].vegetarian == null ? 'unknown' : this.ingredients[key].vegetarian;
-            let newVText = document.createTextNode(vegStatus);
+            let vegatarianStatus = this.ingredients[key].vegetarian == null ? 'unknown' : this.ingredients[key].vegetarian;
+            let newVText = document.createTextNode(vegatarianStatus);
             
+
+            // *** VEGAN STATUS
+            let veganStatus = this.ingredients[key].vegan == null ? 'unknown' : this.ingredients[key].vegan;
+            let newVNText = document.createTextNode(veganStatus);
+
+
             // attachs text to the cell
             newICell.appendChild(newIText);
             // attachs text to the cell
             newVCell.appendChild(newVText);
+            // attachs text to the cell
+            newVNCell.appendChild(newVNText);
+
 
             // *** CHANGES THE CELL COLOR ***
-            if (vegStatus === 'no') {
+            if (vegatarianStatus === 'no') {
                 // turns item red
                 newVCell.classList.add('veg-item-no');
             }
-            else if (vegStatus === 'unknown' || vegStatus === 'maybe') {
+            else if (vegatarianStatus === 'unknown' || vegatarianStatus === 'maybe') {
                 // turns item yellow
                 newVCell.classList.add('veg-item-maybe');
+            }
+
+            if (veganStatus === 'no') {
+                newVNCell.classList.add('vegn-item-no');
+            }
+            else if (veganStatus === 'unknown' || veganStatus === 'maybe') {
+                newVNCell.classList.add('vegn-item-maybe');
             }
         }
     }
